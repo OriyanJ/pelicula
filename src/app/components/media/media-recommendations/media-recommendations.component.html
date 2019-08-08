@@ -26,7 +26,8 @@
               </div>
             </ng-template>
           </a>
-          <a class="h6 mb-1 d-block" [routerLink]="['/' + media.mediaType, media.id]">{{ media.title }}</a>
+          <a class="h6 mb-1 d-block"
+            [routerLink]="['/' + media.mediaType, media.id]">{{ media.title ? media.title : media.name }}</a>
         </div>
       </div><!-- /Media -->
 

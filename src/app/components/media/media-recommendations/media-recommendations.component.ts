@@ -10,9 +10,5 @@ export class MediaRecommendationsComponent implements OnInit {
   @Input() recommendations: Movie[] | Tv[];
   constructor() {}
 
-  ngOnInit() {
-    console.group('Recommendations');
-    console.log(this.recommendations);
-    console.groupEnd();
-  }
+  ngOnInit() {}
 }
