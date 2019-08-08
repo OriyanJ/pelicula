@@ -1,0 +1,82 @@
+<ng-container *ngIf="!vertical; else verticalLayout">
+  <div class="card mb-2" [ngSwitch]="media.mediaType">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <ng-container *ngTemplateOutlet="poster"></ng-container>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <ng-container *ngTemplateOutlet="title"></ng-container>
+          <ng-container *ngTemplateOutlet="dateRating"></ng-container>
+          <ng-container *ngTemplateOutlet="overview"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #verticalLayout>
+  <div class="card h-100" [ngSwitch]="media.mediaType">
+    <!-- Poster -->
+    <div class="card-img-top">
+      <ng-container *ngTemplateOutlet="poster"></ng-container>
+    </div>
+    <!-- Card body -->
+    <div class="card-body">
+
+      <ng-container *ngTemplateOutlet="title"></ng-container>
+      <ng-container *ngTemplateOutlet="overview"></ng-container>
+
+    </div>
+    <!-- /Card body -->
+  </div>
+</ng-template>
+
+<ng-template #title>
+  <!-- Title -->
+  <h5 class="card-title">
+    <a [routerLink]="['/' + media.mediaType, media.id]" [ngSwitch]="media.mediaType">
+      <ng-container *ngSwitchCase="'movie'">{{ media.title }}</ng-container>
+      <ng-container *ngSwitchCase="'tv'">{{ media.name }}</ng-container>
+      <ng-container *ngSwitchCase="'people'">{{ media.name }}</ng-container>
+    </a>
+  </h5>
+</ng-template>
+
+<ng-template #dateRating>
+  <div class="text-muted mb-2" *ngIf="!minimal" [ngSwitch]="media.mediaType">
+    <!-- Date -->
+    <span class="font-weight-semi-bold text-sans-serif mr-2" *ngIf="media.releaseDate || media.firstAirDate">
+      <ng-container *ngSwitchCase="'movie'">{{ media.releaseDate | date:'y' }}</ng-container>
+      <ng-container *ngSwitchCase="'tv'">{{ media.firstAirDate | date:'y' }}</ng-container>
+    </span>
+
+    <!-- Rating -->
+    <span class="badge badge-soft-info rounded-capsule" *ngIf="media.voteAverage; else noRating">
+      <span class="fa fa-heart"></span>
+      {{ media.voteAverage }}
+    </span>
+  </div>
+  <ng-template #noRating>
+    <span class="badge badge-soft-secondary rounded-capsule">
+      No rating
+    </span>
+  </ng-template>
+</ng-template>
+
+<ng-template #overview>
+  <!-- Overview -->
+  <p class="card-text" [class.fs--1]="!vertical" [class.mt-4]="!vertical" [class.fs--2]="vertical">
+    {{ !vertical ? (media.overview | truncate:390) : (media.overview | truncate:200) }}
+  </p>
+</ng-template>
+
+<ng-template #poster>
+  <!-- Poster -->
+  <a [routerLink]="['/' + media.mediaType, media.id]">
+    <app-profile-image [path]="media.posterPath" size="md" *ngIf="!vertical; else backdropPoster"></app-profile-image>
+    <ng-template #backdropPoster>
+      <img class="img-fluid rounded-top" [src]="'https://image.tmdb.org/t/p/w500_and_h282_face' + media.backdropPath">
+    </ng-template>
+  </a>
+</ng-template>

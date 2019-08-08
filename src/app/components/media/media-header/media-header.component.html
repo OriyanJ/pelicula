@@ -1,0 +1,71 @@
+<ng-container [ngSwitch]="media.mediaType">
+
+  <div class="card-body text-white">
+
+    <div [class.row]="media.posterPath">
+      <div class="col-3" *ngIf="media.posterPath">
+        <app-profile-image [path]="media.posterPath" size="lg"></app-profile-image>
+      </div>
+
+      <div [class.col-9]="media.posterPath">
+        <!-- Movie title -->
+        <div class="mb-4">
+          <h2 class="text-white font-weight-bold">
+            <ng-container *ngSwitchCase="'movie'">{{ media.title }}</ng-container>
+            <ng-container *ngSwitchCase="'tv'">{{ media.name }}</ng-container>
+
+            <span class="text-muted h5 font-weight-medium ml-2"
+              *ngIf="media.mediaType === 'tv' && media.firstAirDate || media.mediaType === 'movie' && media.releaseDate">
+              <ng-container *ngSwitchCase="'movie'">({{ media.releaseDate | date:'y' }})</ng-container>
+              <ng-container *ngSwitchCase="'tv'">({{ media.firstAirDate | date:'y' }})</ng-container>
+            </span>
+          </h2>
+        </div>
+
+        <!-- Rating -->
+        <div class="text-muted mb-4" *ngIf="media.voteAverage">
+          <span class="badge badge-soft-info rounded-capsule ml-1 fs-1" *ngIf="media.voteAverage"><span
+              class="fa fa-heart"></span>
+            {{ media.voteAverage }}</span> <span class="text-white ml-2 fs--1">{{ media.voteCount | number }}
+            votes</span>
+        </div>
+
+        <!-- Overview -->
+        <div class="my-5" *ngIf="media.overview">
+          <div class="font-weight-semi-bold h5 text-white mb-3" *ngIf="media.overview">Overview</div>
+          <p class="">{{ media.overview }}</p>
+        </div>
+
+        <!-- Directed/Created by -->
+        <div *ngIf="crew.length || media.createdBy.length">
+          <div class="font-weight-semi-bold h5 text-white mb-3">
+            <ng-container *ngSwitchCase="'movie'">Directed by</ng-container>
+            <ng-container *ngSwitchCase="'tv'">Created by</ng-container>
+          </div>
+
+          <ng-container *ngSwitchCase="'movie'">
+            <!-- Directed by -->
+            <div *ngFor="let people of crew">
+              <a class="text-white" [routerLink]="['/person', people.id]" *ngIf="people.job === 'Director'">
+                {{ people.name }}
+              </a>
+            </div>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'tv'">
+            <!-- Created by -->
+            <div *ngFor="let people of media.createdBy">
+              <a class="text-white" [routerLink]="['/person', people.id]">
+                {{ people.name }}
+              </a>
+            </div>
+          </ng-container>
+
+        </div>
+        <!-- /Directed/Created by -->
+
+      </div>
+    </div>
+  </div>
+
+</ng-container>

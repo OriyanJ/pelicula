@@ -1,0 +1,23 @@
+<div class="container">
+  <h4 class="my-4 " *ngIf="(title$ | async) as title">{{ title }}</h4>
+
+  <ng-container *ngIf="(paginated$ | async) as paginated">
+
+    <app-pagination [currentPage]="paginated.page" [totalResults]="paginated.totalResults" [itemsPerPage]="20"
+      (pageChanged)="onPageChanged($event)" [maxPages]="5">
+    </app-pagination>
+
+    <div class="row">
+
+      <div class="col-sm-6 mb-3" *ngFor="let media of paginated.data">
+        <app-media-item [media]="media"></app-media-item>
+      </div>
+
+    </div>
+
+    <app-pagination [currentPage]="paginated.page" [totalResults]="paginated.totalResults" [itemsPerPage]="20"
+      (pageChanged)="onPageChanged($event)" [maxPages]="5">
+    </app-pagination>
+  </ng-container>
+
+</div>

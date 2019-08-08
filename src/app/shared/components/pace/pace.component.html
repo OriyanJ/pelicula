@@ -1,0 +1,20 @@
+<ng-container *ngIf="progress">
+  <ng-container *ngIf="!isCard; else cardPace">
+    <div class="position-relative">
+      <div class="theme_tail theme_tail_circle">
+        <div class="pace_progress" data-progress-text="60%" data-progress="60"></div>
+        <div class="pace_activity"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #cardPace>
+    <div class="blockUI blockOverlay"></div>
+    <div class="blockUI blockMsg blockElement">
+      <div class="theme_tail theme_tail_circle">
+        <div class="pace_progress" data-progress-text="60%" data-progress="60"></div>
+        <div class="pace_activity"></div>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

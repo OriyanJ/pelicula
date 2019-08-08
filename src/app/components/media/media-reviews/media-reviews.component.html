@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header bg-light">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Featured review</h5>
+      <button class="btn btn-falcon-default btn-sm mr-1 mb-1" type="button" [routerLink]="['/' + type, id, 'reviews']"
+        *ngIf="id && reviews.length > 1">
+        Read All Reviews
+      </button>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <app-review *ngFor="let review of (reviews | slice:0:1)" [review]="review" [isCollapsed]="true"></app-review>
+  </div>
+</div>

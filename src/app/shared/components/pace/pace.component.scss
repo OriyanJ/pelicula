@@ -1,0 +1,104 @@
+:host {
+  border-radius: inherit;
+}
+
+// Default rotation
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes rotation {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotation {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.theme_tail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -15px;
+}
+
+.pace-demo .pace_progress {
+  display: none;
+  white-space: nowrap;
+}
+
+.theme_tail .pace_activity {
+  margin: auto;
+  width: 30px;
+  height: 30px;
+  border: 3px solid transparent;
+  border-left-color: #fff;
+  border-radius: 50%;
+  -webkit-animation: rotation linear 1.1s infinite;
+  animation: rotation linear 1.1s infinite;
+}
+
+.theme_tail_circle .pace_activity {
+  border-color: rgba(0, 0, 0, .15);
+  border-left-color: #2c7be5;
+}
+
+.blockUI.blockOverlay {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+}
+
+.blockMsg.blockElement {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  bottom: 50%;
+  left: 50%;
+  right: 50%;
+}

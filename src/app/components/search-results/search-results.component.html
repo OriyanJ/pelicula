@@ -1,0 +1,47 @@
+<!-- <router-outlet></router-outlet> -->
+
+<div *ngIf="(paginated$ | async) as paginated">
+
+  <div class="mb-4">
+    <div>
+      Showing results
+    </div>
+    <div>
+      <ng-select class="text-sans-serif" [items]="filterType" [searchable]="false" [clearable]="false" bindId="value"
+        bindLabel="label" [(ngModel)]="selectedOption" (change)="onFilterChange()">
+
+        <ng-template ng-option-tmp let-item="item" let-index="index" #item>
+          <span class="h6 mr-1">{{ item.label }}</span>
+          <span class="badge badge-pill badge-soft-secondary fs--2"
+            *ngIf="searchResults[item.value] as filteredResults">
+            {{ filteredResults.length }}
+          </span>
+        </ng-template>
+      </ng-select>
+    </div>
+  </div>
+
+  <div *ngIf="selectedResults as results">
+    <div *ngFor="let result of results" [ngSwitch]="result.mediaType">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-2 d-none d-sm-block">
+              <app-profile-image [path]="result.posterPath" size="xs"></app-profile-image>
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-10">
+              <div class="h6">
+                <a [routerLink]="['/' + result.mediaType, result.id]">{{ result.title }}</a>
+                <span class="fs--2 ml-1" *ngIf="result.releaseDate || result.firstAirDate">
+                  <ng-container *ngSwitchCase="'movie'">({{ result.releaseDate | date:'y' }})</ng-container>
+                  <ng-container *ngSwitchCase="'tv'">({{ result.firstAirDate | date:'y' }})</ng-container>
+                </span>
+              </div>
+              <div class="fs--1">{{ result.overview | slice:0:200 }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

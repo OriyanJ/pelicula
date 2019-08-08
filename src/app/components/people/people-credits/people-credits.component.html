@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    <div class="h5 float-left">Credits</div>
+
+    <!-- Credit type radio buttons -->
+    <div class="float-right">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input class="custom-control-input" id="credit-type-movie" type="radio" name="credit-type" value="movie"
+          [(ngModel)]="creditsFilter" (change)="onCreditsFilterChange()">
+        <label class="custom-control-label" for="credit-type-movie">Movies</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline mr-0">
+        <input class="custom-control-input" id="credit-type-tv" type="radio" name="credit-type" value="tv"
+          [(ngModel)]="creditsFilter" (change)="onCreditsFilterChange()">
+        <label class=" custom-control-label" for="credit-type-tv">TV Shows</label>
+      </div>
+    </div>
+    <!-- /Credit type radio buttons -->
+  </div>
+
+  <div class="card-body p-0">
+    <ng-container *ngIf="credits.cast.length">
+      <!-- Cast -->
+      <div class="border-bottom-0 rounded-0 border-x-0 border border-300 bg-light p-3">
+        <div class="h6 mb-0">Acting</div>
+      </div>
+      <app-people-credit *ngFor="let credit of cast" [credit]="credit"></app-people-credit>
+      <!-- /Cast -->
+    </ng-container>
+    <ng-container *ngIf="groupedCrew.length">
+      <!-- Crew -->
+      <ng-container *ngFor="let group of groupedCrew">
+        <div class="border-bottom-0 rounded-0 border-x-0 border border-300 bg-light p-3">
+          <div class="h6 mb-0">{{ group.name }}</div>
+        </div>
+        <app-people-credit *ngFor="let crew of group.data" [credit]="crew"></app-people-credit>
+      </ng-container>
+      <!-- /Crew -->
+    </ng-container>
+  </div>
+
+</div>

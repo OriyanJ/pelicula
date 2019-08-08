@@ -1,0 +1,16 @@
+<div class="container">
+  <app-people-header [people]="people"></app-people-header>
+
+  <div class="row">
+    <div class="col-md-8">
+      <app-people-known-for class="mb-4 d-block" [credits]="knownForCredits" *ngIf="knownForCredits.length > 4">
+      </app-people-known-for>
+      <app-people-credits class="mb-4 d-block" [credits]="credits"></app-people-credits>
+    </div>
+
+    <div class="col-md-4">
+      <app-people-info [people]="people"></app-people-info>
+    </div>
+  </div>
+
+</div>

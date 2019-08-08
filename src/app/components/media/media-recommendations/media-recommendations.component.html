@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    <div class="h5">Recommendations</div>
+  </div>
+
+  <div class="card-body bg-light">
+    <div class="row" *ngIf="recommendations.length; else noRecommendations">
+
+      <div class="col-6 col-md-4 col-lg-3 col-xxl-3 mb-3" *ngFor="let media of (recommendations | slice:0:8)">
+        <!-- Media -->
+        <div class="h-100 text-center">
+          <a class="person-image mb-3 d-inline-block position-relative"
+            [routerLink]="['/' + media.mediaType, media.id]">
+            <img class="img-fluid rounded shadow-sm"
+              [src]="'https://image.tmdb.org/t/p/w150_and_h225_bestv2' + media.posterPath" alt="" width="100"
+              *ngIf="media.posterPath; else missingPosterPath">
+
+            <span class="media-vote-average badge badge-soft-info ml-1 position-absolute fs--2"
+              *ngIf="media.voteAverage">
+              <span class="fa fa-heart"></span> {{ media.voteAverage }}
+            </span>
+
+            <ng-template #missingPosterPath>
+              <div
+                class="person-no-image text-muted h-100 d-flex rounded align-items-center justify-content-center bg-light">
+              </div>
+            </ng-template>
+          </a>
+          <a class="h6 mb-1 d-block" [routerLink]="['/' + media.mediaType, media.id]">{{ media.title }}</a>
+        </div>
+      </div><!-- /Media -->
+
+    </div>
+
+    <ng-template #noRecommendations>
+      <div class="fs--1">
+        We don't have enough data to suggest any recommendations. You can help by rating content you've seen.
+      </div>
+    </ng-template>
+
+  </div>
+</div>

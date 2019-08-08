@@ -1,0 +1,21 @@
+<div class="card h-100" [ngSwitch]="media.mediaType">
+  <!-- Poster -->
+  <div class="card-img-top">
+    <img class="img-fluid rounded-top" [src]="'https://image.tmdb.org/t/p/w500_and_h282_face' + media.backdropPath">
+  </div>
+  <!-- Card body -->
+  <div class="card-body">
+
+    <h5 class="card-title">
+      <a [routerLink]="['/' + media.mediaType, media.id]">
+        <ng-container *ngSwitchCase="'movie'">{{ media.title }}</ng-container>
+        <ng-container *ngSwitchCase="'tv'">{{ media.name }}</ng-container>
+        <ng-container *ngSwitchCase="'people'">{{ media.name }}</ng-container>
+      </a>
+    </h5>
+    <p class="card-text fs--2">
+      {{ media.overview }}
+    </p>
+  </div>
+  <!-- /Card body -->
+</div>

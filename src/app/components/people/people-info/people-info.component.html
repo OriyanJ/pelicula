@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-header bg-light">
+    <div class="h5">Personal info</div>
+  </div>
+
+  <div class="card-body">
+
+    <ng-container *ngIf="people.birthday">
+      <div>
+        <!-- Date of birth -->
+        <div class="h6 text-primary">Date of birth</div>
+        <div class="fs--1">
+          {{ people.birthday | date:'longDate' }}
+        </div>
+
+        <hr class="border-dashed border-bottom-0">
+      </div>
+
+      <div>
+        <!-- Age -->
+        <div class="h6 text-primary">Age</div>
+        <div class="fs--1">
+          {{ people.birthday | age }}
+        </div>
+
+        <hr class="border-dashed border-bottom-0">
+      </div>
+    </ng-container>
+
+    <div *ngIf="people.knownDepartment">
+      <!-- Known for -->
+      <div class="h6 text-primary">Known for</div>
+      <div class="fs--1">
+        <span></span>
+        {{ people.knownDepartment }}
+      </div>
+
+      <hr class="border-dashed border-bottom-0">
+    </div>
+
+    <div *ngIf="people.placeOfBirth">
+      <!-- Place of birth -->
+      <div class="h6 text-primary">Place of birth</div>
+      <div class="fs--1">
+        <span></span>
+        {{ people.placeOfBirth }}
+      </div>
+
+      <hr class="border-dashed border-bottom-0">
+    </div>
+
+    <div>
+      <a [href]="people.homepage" target="_blank" class="btn btn-sm btn-falcon-primary btn-block"
+        *ngIf="people.homepage">Official website</a>
+      <a [href]="'https://www.imdb.com/name/' + people.imdbId" target="_blank"
+        class="btn btn-sm btn-falcon-primary btn-block" *ngIf="people.imdbId">IMDB</a>
+    </div>
+
+  </div>
+</div>

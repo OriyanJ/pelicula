@@ -1,0 +1,24 @@
+<div class="border-bottom-0 px-3 py-2 rounded-0 border-x-0 border border-300">
+  <div class="row w-100 align-items-center">
+    <div class="col-2 fs--1">
+      {{ credit.releaseDate ? (credit.releaseDate | date:'y') : '—'}}
+    </div>
+    <div class="col-3 col-lg-2">
+      <span class="badge badge-light" [innerText]="isMovie ? 'Movie' : 'TV Show'"></span>
+    </div>
+    <div class="col-7 col-lg-8">
+      <a class="h6" [routerLink]="['/' + credit.mediaType, credit.id]">
+        {{ credit.title }}
+      </a>
+
+      <span class="fs--1" *ngIf="!isMovie && credit.episodeCount">
+        ({{ credit.episodeCount }} {{ credit.episodeCount > 1 ? 'episodes' : 'episode' }})
+      </span>
+
+      <div [class.text-muted]="!isCast" class="fs--1">
+        {{ credit.constructor.name === 'PeopleCrew' ? credit.job : credit.character ? 'as ' + credit.character : '' }}
+      </div>
+
+    </div>
+  </div>
+</div>

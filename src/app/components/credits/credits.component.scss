@@ -1,0 +1,16 @@
+.cast-no-image:before {
+  content: "\f03e";
+  font-family: 'FontAwesome';
+}
+
+.cast-image {
+  max-height: 150px;
+}
+
+.media-holder {
+  height: 66px;
+}
+
+.cast-no-image {
+  max-width: 66px;
+}

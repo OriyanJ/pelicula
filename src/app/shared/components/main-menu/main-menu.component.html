@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark fs--1 font-weight-semi-bold navbar-standard navbar-theme navbar-expand-lg bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <div class="d-flex align-items-center text-primary">
+        <span class="text-white">película</span>
+      </div>
+    </a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarStandard">
+      <span class="navbar-toggler-icon"></span></button>
+    <div class="navbar-collapse collapse" id="navbarStandard">
+
+      <!-- Menu items -->
+      <ul class="navbar-nav align-items-center">
+        <app-menu-item [menuItem]="menuItem" *ngFor="let menuItem of menuItems"></app-menu-item>
+      </ul>
+      <!-- /Menu items -->
+
+      <!-- Account menu -->
+      <ul class="navbar-nav align-items-center ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link" routerLink="/login" role="button">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+      </ul>
+      <!-- /Account menu -->
+    </div>
+  </div>
+</nav>

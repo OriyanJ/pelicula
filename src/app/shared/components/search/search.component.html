@@ -1,0 +1,44 @@
+<form class="form-inline search-box">
+  <input class="form-control rounded-pill search-input" type="search" placeholder="Search for anything..."
+    [(ngModel)]="query" name="query" (keyup)="onSearch()" autocomplete="off" #searchInput>
+  <span class="position-absolute fa fa-search text-400 search-box-icon"></span>
+</form>
+
+<div class="position-relative" *ngIf="options">
+  <ul class="search-results list-group position-absolute">
+    <ng-container *ngIf="options.length; else noResults">
+      <li class="search-result list-group-item p-2 fs--1 cursor-pointer" routerLink="/search-results"
+        [queryParams]="{ query: query }">
+        <a>See all results for "{{ query }}"</a>
+      </li>
+      <li class="search-result list-group-item p-2 fs--1 cursor-pointer" *ngFor="let result of topResults"
+        [ngSwitch]="result.mediaType" [routerLink]="['/search-results', result.mediaType]"
+        [queryParams]="{ query: result.title }">
+        <span class="text-sans-serif font-weight-medium">
+          <ng-container *ngSwitchCase="'movie'"><i class="fa fa-film text-muted mr-1"></i></ng-container>
+          <ng-container *ngSwitchCase="'tv'"><i class="fa fa-tv text-muted mr-1"></i></ng-container>
+          <ng-container *ngSwitchCase="'person'"><i class="fa fa-user text-muted mr-1"></i></ng-container>
+          {{ result.title }}
+        </span>
+        <span class="text-muted ml-1">in
+          <ng-container *ngSwitchCase="'movie'">Movies</ng-container>
+          <ng-container *ngSwitchCase="'tv'">TV Shows</ng-container>
+          <ng-container *ngSwitchCase="'person'">People</ng-container>
+        </span>
+      </li>
+      <li class="search-result list-group-item p-2 fs--1 cursor-pointer" *ngFor="let result of options"
+        [ngSwitch]="result.mediaType" routerLink="/search-results" [queryParams]="{ query: result.title }">
+        <span class="text-sans-serif font-weight-medium">
+          <i class="fa fa-search text-muted mr-1"></i>
+          {{ result.title }}</span>
+      </li>
+    </ng-container>
+
+    <ng-template #noResults>
+      <li class="list-group-item p-2 fs--1">
+        <span class="text-sans-serif font-weight-medium">No results were found</span>
+      </li>
+    </ng-template>
+
+  </ul>
+</div>

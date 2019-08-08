@@ -1,0 +1,25 @@
+<div class="card mb-4">
+  <div class="card-header position-relative mb-7 bg-gradient">
+    <div class="bg-holder rounded-soft rounded-bottom-0">
+    </div>
+    <div class="avatar avatar-5xl avatar-profile"><img class="rounded-circle img-thumbnail shadow-sm"
+        [src]="'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + people.profilePath" width="200"
+        [alt]="people.name + ' profile image'"></div>
+  </div>
+  <div class="card-body">
+    <div>
+      <!-- Name -->
+      <h4 class="mb-3">{{ people.name }}</h4>
+    </div>
+
+    <div *ngIf="people.biography">
+      <!-- Biography -->
+      <p class="fs--1 white-space-prewrap">{{ people.biography | slice:0:650 }}<span
+          *ngIf="people.biography.length > 650">...</span>
+      </p>
+      <button class="btn btn-falcon-primary btn-sm mr-1 mb-1" type="button" *ngIf="people.biography.length > 650">Read
+        rest of the biography</button>
+    </div>
+
+  </div>
+</div>

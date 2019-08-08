@@ -1,0 +1,7 @@
+<div class="media-poster">
+  <img class="rounded" [src]="'https://image.tmdb.org/t/p/' + mediaPath[size] + path" *ngIf="path; else noProfilePath">
+</div>
+
+<ng-template #noProfilePath>
+  <div class="cast-no-image text-muted h-100 d-flex rounded align-items-center justify-content-center bg-light"></div>
+</ng-template>

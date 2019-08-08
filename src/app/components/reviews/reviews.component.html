@@ -1,0 +1,17 @@
+<app-media-page-title [media]="media$ | async"></app-media-page-title>
+
+<div class="card">
+  <div class="card-header bg-light">
+    <h5>Reviews</h5>
+  </div>
+
+  <div class="card-body">
+    <ng-container *ngIf="(reviews$ | async) as reviews">
+      <div class="bg-light p-3 rounded" [class.mb-3]="reviews.length - 1 > i"
+        *ngFor="let review of reviews; let i = index">
+        <app-review [review]="review" [isCollapsed]="true"></app-review>
+      </div>
+    </ng-container>
+  </div>
+
+</div>

@@ -1,0 +1,12 @@
+.text-link {
+  color: #2c7be5 !important;
+  cursor: pointer;
+}
+
+.border-1 {
+  border: 1px solid !important;
+}
+
+.white-space-prewrap {
+  white-space: pre-wrap;
+}

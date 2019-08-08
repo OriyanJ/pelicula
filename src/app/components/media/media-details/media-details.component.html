@@ -1,0 +1,38 @@
+<ng-container *ngIf="(media$ | async) as media">
+
+
+  <div class="position-relative">
+    <div class="media-header-bg"
+      [style.background-image]="'url(https://image.tmdb.org/t/p/w1400_and_h450_face' + media.posterPath + ')'">
+    </div>
+    <div class="media-header-content position-relative">
+      <div class="container">
+        <app-media-header [media]="media" [crew]="(credits$ | async).crew"></app-media-header>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row mt-4">
+
+      <div class="col-md-4 mb-4">
+        <app-media-facts [media]="media" [keywords]="keywords$ | async"></app-media-facts>
+      </div>
+
+      <div class="col-md-8">
+        <app-media-cast class="mb-4 d-block" [cast]="(credits$ | async).cast"></app-media-cast>
+
+        <ng-container *ngIf="(reviews$ | async) as reviews">
+          <app-media-reviews class="mb-4 d-block" [reviews]="reviews" *ngIf="reviews.length">
+          </app-media-reviews>
+        </ng-container>
+
+        <app-media-recommendations class="mb-4 d-block" [recommendations]="recommendations$ | async">
+        </app-media-recommendations>
+      </div>
+
+
+    </div>
+  </div>
+
+</ng-container>

@@ -1,0 +1,18 @@
+<ng-container *ngIf="isCollapsed; else fullReview">
+  <div class="h6">Written by {{ review.author }}</div>
+  <div class="fs--1">
+    <p class="review-content">{{ review.content | slice: 0:maxLength }}<span *ngIf="isSliced">...</span></p>
+    <div class="text-link" (click)="toggleSlicing('show')" *ngIf="isSliced">Show the entire
+      review <span class="fa fa-chevron-down"></span></div>
+
+    <div class="text-link" (click)="toggleSlicing('hide')" *ngIf="isSliced === false">Show less <span
+        class="fa fa-chevron-up"></span></div>
+  </div>
+</ng-container>
+
+<ng-template #fullReview>
+  <div class="h6">Written by {{ review.author }}</div>
+  <div class="fs--1">
+    <p class="review-content">{{ review.content }}</p>
+  </div>
+</ng-template>

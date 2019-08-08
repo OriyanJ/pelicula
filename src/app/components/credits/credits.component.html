@@ -1,0 +1,75 @@
+<app-media-page-title [media]="media"></app-media-page-title>
+
+<div class="row">
+  <!-- Cast -->
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-light">
+        <h5>Cast</h5>
+      </div>
+      <div class="card-body">
+        <!-- Cast member -->
+        <div *ngFor="let person of credits.cast">
+          <div class="row mb-4">
+            <!-- Media -->
+            <div class="col-3 col-md-4 col-lg-3 col-xxl-2 media-holder">
+              <img [src]="'https://image.tmdb.org/t/p/w66_and_h66_face/' + person.profilePath" class="rounded fs--1"
+                [alt]="person.name" *ngIf="person.profilePath; else noMedia">
+            </div>
+            <!-- /Media -->
+            <!-- Name -->
+            <div class="col-9 col-md-8 col-lg-9 col-xxl-10">
+              <div class="h6 mb-1">
+                <a [routerLink]="['/person', person.id]" class="font-weight-semi-bold">{{ person.name }}</a>
+              </div>
+              <div class="fs--1">{{ person.character }}</div>
+            </div>
+            <!-- /Name -->
+          </div>
+        </div>
+        <!-- /Cast member -->
+      </div>
+    </div>
+  </div>
+  <!-- /Cast -->
+
+  <!-- Crew -->
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-light">
+        <h5>Crew</h5>
+      </div>
+      <div class="card-body">
+
+        <!-- Department -->
+        <div *ngFor="let department of getDepartments()">
+          <div class="h6 mb-3 font-weight-semi-bold">{{ department }}</div>
+          <!-- Crew memebr -->
+          <div class="row mb-4" *ngFor="let person of departments[department]">
+            <!-- Media -->
+            <div class="col-3 col-md-4 col-lg-3 col-xxl-2 media-holder">
+              <img [src]="'https://image.tmdb.org/t/p/w66_and_h66_face/' + person.profilePath" class="rounded fs--1"
+                [alt]="person.name" *ngIf="person.profilePath; else noMedia">
+            </div>
+            <!-- /Media -->
+            <div class="col-9 col-md-8 col-lg-9 col-xxl-10">
+              <div class="h6 mb-1">
+                <a [routerLink]="['/person', person.id]" class="font-weight-semi-bold">{{ person.name }}</a>
+              </div>
+              <div class="fs--1">{{ person.job }}</div>
+            </div>
+          </div>
+          <!-- /Crew memebr -->
+        </div>
+        <!-- /Department -->
+
+      </div>
+    </div>
+  </div>
+  <!-- /Crew -->
+</div>
+
+<ng-template #noMedia>
+  <div class="cast-no-image text-muted h-100 d-flex rounded align-items-center justify-content-center bg-light">
+  </div>
+</ng-template>
