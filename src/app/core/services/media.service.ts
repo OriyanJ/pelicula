@@ -6,10 +6,12 @@ import {
   MovieJson,
   PaginatedDataJson,
   TvJson,
-  VideosJson
+  VideosJson,
+  ExternalIdsJson
 } from '@bridge-interfaces';
-import { Keyword, PaginatedData, Review } from '@models';
+import { Keyword, PaginatedData, Review, ExternalIds } from '@models';
 import {
+  GetExternalIdsSerializer,
   GetMediaCreditsSerializer,
   GetMediaKeywordsSerializer,
   GetMediaListSerializer,
@@ -30,7 +32,8 @@ export class MediaService {
     private getMediaCreditsSerializer: GetMediaCreditsSerializer,
     private getMediaReviewsSerializer: GetMediaReviewsSerializer,
     private getMediaKeywordsSerializer: GetMediaKeywordsSerializer,
-    private getMediaVideosSeralizer: GetMediaVideosSerializer
+    private getMediaVideosSeralizer: GetMediaVideosSerializer,
+    private getExternalIdsSerializer: GetExternalIdsSerializer
   ) {}
 
   /**
@@ -40,12 +43,9 @@ export class MediaService {
    */
   getDetails(type: string, id: string) {
     const url = `${environment.apiUrl}/${type}/${id}`;
-    let params = new HttpParams();
-    params = params.append('api_key', environment.apiKey);
-    params = params.append('language', environment.apiLanguage);
 
     return this.http
-      .get(url, { params: params })
+      .get(url)
       .pipe(
         map((response: MovieJson | TvJson) =>
           this.mediaSerializer.from(response, type)
@@ -77,11 +77,9 @@ export class MediaService {
    */
   getCredits(type: string, id: string) {
     const url = `${environment.apiUrl}/${type}/${id}/credits`;
-    let params = new HttpParams();
-    params = params.append('api_key', environment.apiKey);
 
     return this.http
-      .get(url, { params: params })
+      .get(url)
       .pipe(
         map((json: CreditsJson) => this.getMediaCreditsSerializer.from(json))
       );
@@ -90,12 +88,10 @@ export class MediaService {
   getReviews(type: string, id: string, page: number = 1): Observable<Review[]> {
     const url = `${environment.apiUrl}/${type}/${id}/reviews`;
     let params = new HttpParams();
-    params = params.append('api_key', environment.apiKey);
-    params = params.append('language', environment.apiLanguage);
     params = params.append('page', page.toString());
 
     return this.http
-      .get(url, { params: params })
+      .get(url)
       .pipe(
         map((json: PaginatedDataJson) =>
           this.getMediaReviewsSerializer.from(json)
@@ -105,11 +101,9 @@ export class MediaService {
 
   getKeywords(type: string, id: string): Observable<Keyword[]> {
     const url = `${environment.apiUrl}/${type}/${id}/keywords`;
-    let params = new HttpParams();
-    params = params.append('api_key', environment.apiKey);
 
     return this.http
-      .get(url, { params: params })
+      .get(url)
       .pipe(
         map((json: KeywordsJson) =>
           this.getMediaKeywordsSerializer.from(json, type)
@@ -122,11 +116,9 @@ export class MediaService {
    */
   getVideos(type: string, id: string) {
     const url = `${environment.apiUrl}/${type}/${id}/videos`;
-    let params = new HttpParams();
-    params = params.append('api_key', environment.apiKey);
 
     return this.http
-      .get(url, { params: params })
+      .get(url)
       .pipe(map((json: VideosJson) => this.getMediaVideosSeralizer.from(json)));
   }
 
@@ -135,15 +127,26 @@ export class MediaService {
    */
   getRecommendations(type: string, id: string) {
     const url = `${environment.apiUrl}/${type}/${id}/recommendations`;
-    let params = new HttpParams();
-    params = params.append('api_key', environment.apiKey);
 
     return this.http
-      .get(url, { params: params })
+      .get(url)
       .pipe(
         map((json: PaginatedDataJson) =>
           this.getMediaListSerializer.from(json, type)
         )
+      );
+  }
+
+  getExternalIds(
+    type: string,
+    id: string
+  ): Observable<ExternalIds> | Promise<ExternalIds> | ExternalIds {
+    const url = `${environment.apiUrl}/${type}/${id}/external_ids`;
+
+    return this.http
+      .get(url)
+      .pipe(
+        map((json: ExternalIdsJson) => this.getExternalIdsSerializer.from(json))
       );
   }
 }

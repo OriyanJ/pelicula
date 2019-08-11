@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  Router,
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart
+} from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export class MenuItem {
   label: string;
@@ -25,10 +35,27 @@ export class MainMenuComponent implements OnInit {
   ];
 
   isArray = Array.isArray;
+  showProgress: boolean;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log(this.menuItems);
+    this.handleRouting();
+  }
+
+  handleRouting() {
+    this.router.events.pipe().subscribe((event: Event) => {
+      switch (event.constructor.name) {
+        case 'NavigationStart':
+          this.showProgress = true;
+          break;
+
+        case 'NavigationCancel':
+        case 'NavigationEnd':
+        case 'NavigationError':
+          this.showProgress = false;
+          break;
+      }
+    });
   }
 }

@@ -1,5 +1,6 @@
 export { AllowedVideoTypes } from './video.interface';
 export { CreditsJson } from './credits.interface';
+export { ExternalIdsJson } from './external-ids.interface';
 export { GenreJson } from './genre.interface';
 export { KeywordJson } from './keyword.interface';
 export { KeywordsJson } from './keywords.interface';

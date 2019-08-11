@@ -4,10 +4,11 @@
   </div>
   <div class="card-body" [ngSwitch]="type">
 
+
+
     <div *ngSwitchCase="'movie'">
       <div class="h6">Release date</div>
       <div class="fs--1">
-        <span></span>
         {{ media.releaseDate | date:'longDate' }}
       </div>
     </div>
@@ -104,11 +105,20 @@
       <hr class="border-dashed border-bottom-0">
     </ng-container>
 
-    <div>
-      <a [href]="media.website" target="_blank" class="btn btn-sm btn-falcon-primary btn-block"
-        *ngIf="media.website">Official website</a>
-      <a [href]="'https://www.imdb.com/title/' + media.imdb" target="_blank"
-        class="btn btn-sm btn-falcon-primary btn-block" *ngIf="media.imdb">IMDB</a>
+    <div *ngIf="externalIds">
+
+      <div class="row">
+        <div class="col-6 mb-3">
+          <a [href]="media.homepage" target="_blank" class="btn btn-sm btn-falcon-primary btn-block"
+            *ngIf="media.homepage">Official website</a>
+        </div>
+
+        <div class="col-6 mb-3" *ngFor="let externalId of mappedExternalIds">
+          <a class="btn btn-sm btn-falcon-primary btn-block" [href]="externalId.url" target="blank">
+            {{ externalId.label }}
+          </a>
+        </div>
+      </div>
     </div>
 
   </div>

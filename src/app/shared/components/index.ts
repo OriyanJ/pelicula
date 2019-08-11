@@ -8,6 +8,7 @@ export { PaceComponent } from './pace/pace.component';
 export { PageTitleComponent } from './page-title/page-title.component';
 export { PaginationComponent } from './pagination/pagination.component';
 export { ProfileImageComponent } from './profile-image/profile-image.component';
+export { ProgressbarComponent } from './progressbar/progressbar.component';
 export { ReviewComponent } from './review/review.component';
 export { SearchComponent } from './search/search.component';
 export { SelectComponent } from './select/select.component';

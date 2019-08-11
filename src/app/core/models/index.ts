@@ -1,5 +1,6 @@
 export { Credit } from './credit.model';
 export { Credits } from './credits.model';
+export { ExternalIds } from './external-ids.model';
 export { Genre } from './genre.model';
 export { Keyword } from './keyword.model';
 export { MediaCast } from './media-cast.model';

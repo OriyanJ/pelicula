@@ -1,5 +1,6 @@
 <div class="media-poster">
-  <img class="rounded" [src]="'https://image.tmdb.org/t/p/' + mediaPath[size] + path" *ngIf="path; else noProfilePath">
+  <img class="rounded w-100" [src]="'https://image.tmdb.org/t/p/' + mediaPath[size] + path"
+    *ngIf="path; else noProfilePath">
 </div>
 
 <ng-template #noProfilePath>

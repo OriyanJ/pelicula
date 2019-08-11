@@ -1,4 +1,5 @@
 export { GetCreditsResolve } from './get-credits.resolver';
+export { GetExternalIdsResolve } from './get-external-ids.resolver';
 export { GetMediaCreditsResolve } from './get-media-credits.resolver';
 export { GetMediaDetailsResolve } from './get-media-details.resolver';
 export { GetMediaKeywordsResolve } from './get-media-keywords.resolver';

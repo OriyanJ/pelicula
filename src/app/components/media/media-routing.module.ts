@@ -14,7 +14,8 @@ import {
   GetMediaListResolve,
   GetMediaRecommendationsResolve,
   GetMediaReviewsResolve,
-  GetMediaVideosResolve
+  GetMediaVideosResolve,
+  GetExternalIdsResolve
 } from '@shared-resolvers';
 
 const routes: Routes = [
@@ -59,7 +60,8 @@ const routes: Routes = [
       reviews: GetMediaReviewsResolve,
       keywords: GetMediaKeywordsResolve,
       videos: GetMediaVideosResolve,
-      recommendations: GetMediaRecommendationsResolve
+      recommendations: GetMediaRecommendationsResolve,
+      externalIds: GetExternalIdsResolve
     }
   },
   {
@@ -110,7 +112,8 @@ const routes: Routes = [
       reviews: GetMediaReviewsResolve,
       keywords: GetMediaKeywordsResolve,
       videos: GetMediaVideosResolve,
-      recommendations: GetMediaRecommendationsResolve
+      recommendations: GetMediaRecommendationsResolve,
+      externalIds: GetExternalIdsResolve
     }
   },
   {
