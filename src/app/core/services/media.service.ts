@@ -2,14 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   CreditsJson,
+  ExternalIdsJson,
   KeywordsJson,
   MovieJson,
   PaginatedDataJson,
   TvJson,
-  VideosJson,
-  ExternalIdsJson
+  VideosJson
 } from '@bridge-interfaces';
-import { Keyword, PaginatedData, Review, ExternalIds } from '@models';
+import { ExternalIds, Keyword, PaginatedData, Review } from '@models';
 import {
   GetExternalIdsSerializer,
   GetMediaCreditsSerializer,

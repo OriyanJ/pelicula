@@ -10,6 +10,7 @@ import {
   ReviewsComponent
 } from '@components';
 import {
+  GetExternalIdsResolve,
   GetMediaCreditsResolve,
   GetMediaDetailsResolve,
   GetMediaKeywordsResolve,
@@ -20,7 +21,7 @@ import {
   GetPeopleCreditsResolve,
   GetPeopleResolve,
   GetTrendingResolve,
-  GetExternalIdsResolve
+  GetTvSeasonsResolve
 } from '@shared-resolvers';
 
 const routes: Routes = [
@@ -131,7 +132,10 @@ const routes: Routes = [
     path: 'tv/:id/credits',
     component: CreditsComponent,
     data: { type: 'tv' },
-    resolve: { media: GetMediaDetailsResolve, credits: GetMediaCreditsResolve }
+    resolve: {
+      media: GetMediaDetailsResolve,
+      credits: GetTvSeasonsResolve
+    }
   },
   {
     path: 'tv/:id/reviews',

@@ -13,3 +13,4 @@ export { GetPeopleCreditsResolve } from './get-people-credits.resolver';
 export { GetPeopleResolve } from './get-people.resolver';
 export { GetTrendingResolve } from './get-trending.resolver';
 export { SearchResolver } from './search.resolver';
+export { GetTvSeasonsResolve } from './get-tv-seasons-credits.resolver';
