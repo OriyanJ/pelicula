@@ -15,11 +15,6 @@
               [src]="'https://image.tmdb.org/t/p/w150_and_h225_bestv2' + media.posterPath" alt="" width="100"
               *ngIf="media.posterPath; else missingPosterPath">
 
-            <span class="media-vote-average badge badge-soft-info ml-1 position-absolute fs--2"
-              *ngIf="media.voteAverage">
-              <span class="fa fa-heart"></span> {{ media.voteAverage }}
-            </span>
-
             <ng-template #missingPosterPath>
               <div
                 class="person-no-image text-muted h-100 d-flex rounded align-items-center justify-content-center bg-light">

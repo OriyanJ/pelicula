@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header bg-light">
+    <div class="d-flex justify-content-between align-items-center row">
+      <div class="col-md">
+        <h5 class="mb-0">
+          {{ media.nextEpisodeToAir ? 'Current Season' : 'Last Season' }}
+        </h5>
+      </div>
+      <div class="col-auto mt-3 mt-md-0">
+        <button class="btn btn-falcon-default btn-sm mr-1 mb-1" type="button"
+          [routerLink]="['/' + media.mediaType, media.id, 'seasons']">
+          All Seasons
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row" *ngIf="media.seasons[media.seasons.length - 1] as season">
+      <div class="col-md-2">
+        <app-profile-image [path]="season.posterPath" size="md"></app-profile-image>
+      </div>
+
+      <div class="col-md-10">
+        <div class="text-sans-serif font-weight-semi-bold">
+          <a [routerLink]="['/' + media.mediaType, media.id, 'season', season.seasonNumber]">{{ season.name }}</a>
+        </div>
+        <div class="h6 mt-1">
+          {{ season.airDate | date:'y' }} — {{ season.episodeCount }}
+          {{ season.episodeCount > 1 ? 'Episodes' : 'Episode' }}
+        </div>
+        <p class="fs--1 mt-3">
+          {{ season.overview ? season.overview : 'Season ' + season.seasonNumber + ' of ' + media.name + ' aired on ' + (season.airDate|date:'longDate') }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

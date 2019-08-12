@@ -3,7 +3,7 @@
   <div class="card-body text-white">
 
     <div [class.row]="media.posterPath">
-      <div class="col-3" *ngIf="media.posterPath">
+      <div class="col-md-3 mb-4 mb-md-0" *ngIf="media.posterPath">
         <app-profile-image [path]="media.posterPath" size="lg"></app-profile-image>
       </div>
 

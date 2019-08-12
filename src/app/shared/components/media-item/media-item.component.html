@@ -1,5 +1,5 @@
 <ng-container *ngIf="!vertical; else verticalLayout">
-  <div class="card mb-2 h-100" [ngSwitch]="media.mediaType">
+  <div class="card mb-2" [ngSwitch]="media.mediaType">
     <div class="row no-gutters">
       <div class="col-md-4">
         <ng-container *ngTemplateOutlet="poster"></ng-container>
@@ -66,15 +66,16 @@
 
 <ng-template #overview>
   <!-- Overview -->
-  <p class="card-text" [class.fs--1]="!vertical" [class.mt-4]="!vertical" [class.fs--2]="vertical">
-    {{ !vertical ? (media.overview | truncate:200) : (media.overview | truncate:200) }}
+  <p class="card-text" [class.fs--1]="!vertical" [class.mt-4]="!vertical" [class.fs--2]="vertical"
+    *ngIf="media.overview">
+    {{ !vertical ? (media.overview | truncate:140) : (media.overview | truncate:140) }}
   </p>
 </ng-template>
 
 <ng-template #poster>
   <!-- Poster -->
   <a [routerLink]="['/' + media.mediaType, media.id]">
-    <app-profile-image [path]="media.posterPath" size="md" *ngIf="!vertical; else backdropPoster"></app-profile-image>
+    <app-profile-image [path]="media.posterPath" size="lg" *ngIf="!vertical; else backdropPoster"></app-profile-image>
     <ng-template #backdropPoster>
       <img class="img-fluid rounded-top" [src]="'https://image.tmdb.org/t/p/w500_and_h282_face' + media.backdropPath">
     </ng-template>

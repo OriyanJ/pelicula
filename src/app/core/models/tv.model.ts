@@ -1,3 +1,5 @@
+import { Season } from './season.model';
+
 export class Tv {
   backdropPath?: string | null;
   createdBy?: object[];
@@ -23,7 +25,7 @@ export class Tv {
   popularity?: number;
   posterPath?: string | null;
   productionCompanies?: object[];
-  seasons?: object[];
+  seasons?: Season[];
   status?: string;
   type?: string;
   voteAverage?: number;

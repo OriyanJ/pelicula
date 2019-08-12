@@ -21,7 +21,10 @@
         </div>
 
         <div class="col-md-8">
-          <app-media-cast class="mb-4 d-block" [cast]="resolved.credits.cast"></app-media-cast>
+          <app-media-cast class="mb-4 d-block" [cast]="resolved.credits.cast" [media]="resolved.media"></app-media-cast>
+
+          <app-media-seasons class="mb-4 d-block" [media]="resolved.media" *ngIf="resolved.media.mediaType === 'tv'">
+          </app-media-seasons>
 
           <ng-container *ngIf="resolved.reviews as reviews">
             <app-media-reviews class="mb-4 d-block" [reviews]="reviews" *ngIf="reviews.length">

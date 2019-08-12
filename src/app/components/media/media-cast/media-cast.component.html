@@ -1,11 +1,16 @@
 <div class="card">
   <div class="card-header bg-light">
-    <div class="d-flex justify-content-between align-items-center">
-      <h5 class="mb-0">Top billed cast</h5>
-      <button class="btn btn-falcon-default btn-sm mr-1 mb-1" type="button"
-        [routerLink]="['/' + type, mediaId, 'credits']">
-        Full Cast & Crew
-      </button>
+    <div class="d-flex justify-content-between align-items-center row">
+      <div class="col-md">
+        <h5 class="mb-0">Top billed cast</h5>
+      </div>
+      <div class="col-auto mt-3 mt-md-0">
+        <button class="btn btn-falcon-default btn-sm mr-1 mb-1" type="button"
+          [routerLink]="['/' + media.mediaType, media.id, 'credits']">
+          Full Cast & Crew
+        </button>
+      </div>
+
     </div>
 
   </div>

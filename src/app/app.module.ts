@@ -30,6 +30,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ApiInterceptor } from './core/interceptors';
 import { HomepageNowPlayingComponent } from './components/homepage/homepage-now-playing/homepage-now-playing.component';
 import { NowPlayingItemComponent } from './components/homepage/homepage-now-playing/now-playing-item/now-playing-item.component';
+import { MediaSeasonsComponent } from './components/media/media-seasons/media-seasons.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NowPlayingItemComponent } from './components/homepage/homepage-now-play
     MediaHeaderComponent,
     MediaCastComponent,
     MediaReviewsComponent,
+    MediaSeasonsComponent,
     PeopleComponent,
     PeopleInfoComponent,
     PeopleCreditsComponent,

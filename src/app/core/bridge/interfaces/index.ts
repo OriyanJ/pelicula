@@ -13,6 +13,7 @@ export { PeopleCrewJson } from './people-crew.interface';
 export { PeopleJson } from './people.interface';
 export { ProductionCompanyJson } from './production-company.interface';
 export { ReviewJson } from './review.interface';
+export { SeasonJson } from './season.interface';
 export { TvJson } from './tv.interface';
 export { VideoJson } from './video.interface';
 export { VideosJson } from './videos.interface';

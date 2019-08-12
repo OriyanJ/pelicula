@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MediaCast } from '@models';
+import { MediaCast, Movie, Tv } from '@models';
 
 @Component({
   selector: 'app-media-cast',
@@ -9,13 +8,12 @@ import { MediaCast } from '@models';
 })
 export class MediaCastComponent implements OnInit {
   @Input() cast: MediaCast[];
-  mediaId: number;
+  @Input() media: Movie | Tv;
   type: string;
-  constructor(private route: ActivatedRoute) {}
+
+  constructor() {}
 
   ngOnInit() {
-    this.mediaId = this.route.snapshot.params.id;
-    this.type = this.route.snapshot.data.type;
     this.orderCast();
   }
 

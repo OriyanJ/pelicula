@@ -14,3 +14,4 @@ export { PaginatedDataSerializer } from './paginated-data.serializer';
 export { PaginatedMediaSerializer } from './paginated-media.serializer';
 export { ReviewSerializer } from './review-serializer';
 export { SearchMultiSerializer } from './search-multi.serializer';
+export { SeasonSerializer } from './season.serializer';

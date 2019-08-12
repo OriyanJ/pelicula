@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { MovieJson, TvJson } from '@bridge-interfaces';
-import { Movie, Tv } from '@models';
+import { MovieJson, TvJson, SeasonJson } from '@bridge-interfaces';
+import { Movie, Tv, Season } from '@models';
 import { MediaType } from '@globals';
+import { SeasonSerializer } from './season.serializer';
 
 @Injectable({ providedIn: 'root' })
 export class MediaSerializer {
-  constructor() {}
+  constructor(private seasonSerializer: SeasonSerializer) {}
 
   from(media: MovieJson | TvJson, type: string): Movie | Tv {
     switch (type) {
@@ -175,7 +176,7 @@ export class MediaSerializer {
       tv.productionCompanies = json.production_companies;
     }
     if (json.seasons) {
-      tv.seasons = json.seasons;
+      tv.seasons = this.serializeSeasons(json.seasons);
     }
     if (json.status) {
       tv.status = json.status;
@@ -190,5 +191,9 @@ export class MediaSerializer {
       tv.voteCount = json.vote_count;
     }
     return tv;
+  }
+
+  private serializeSeasons(seasons: SeasonJson[]): Season[] {
+    return seasons.map(season => this.seasonSerializer.from(season));
   }
 }

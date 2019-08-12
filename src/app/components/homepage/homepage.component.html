@@ -20,8 +20,8 @@
   </div><!-- end of .container-->
 </section>
 
-<section *ngIf="trending$ | async as trending">
-  <app-homepage-now-playing [movies]="trending.movies?.data" [tvShows]="trending.tv?.data"></app-homepage-now-playing>
+<section>
+  <app-homepage-now-playing></app-homepage-now-playing>
 </section>
 
 <section class="bg-dark pt-8 pb-4">

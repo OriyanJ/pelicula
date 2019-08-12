@@ -108,9 +108,8 @@
     <div *ngIf="externalIds">
 
       <div class="row">
-        <div class="col-6 mb-3">
-          <a [href]="media.homepage" target="_blank" class="btn btn-sm btn-falcon-primary btn-block"
-            *ngIf="media.homepage">Official website</a>
+        <div class="col-6 mb-3" *ngIf="media.homepage">
+          <a [href]="media.homepage" target="_blank" class="btn btn-sm btn-falcon-primary btn-block">Homepage</a>
         </div>
 
         <div class="col-6 mb-3" *ngFor="let externalId of mappedExternalIds">

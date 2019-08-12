@@ -1,14 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Router,
-  Event,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart
-} from '@angular/router';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Event, Router } from '@angular/router';
 
 export class MenuItem {
   label: string;
@@ -29,9 +20,15 @@ export class MainMenuComponent implements OnInit {
     new MenuItem('Movies', [
       new MenuItem('Now Playing', '/movie/now-playing'),
       new MenuItem('Popular', '/movie/popular'),
-      new MenuItem('Top Rated', '/movie/top-rated')
+      new MenuItem('Top Rated', '/movie/top-rated'),
+      new MenuItem('Upcoming', '/movie/upcoming')
     ]),
-    new MenuItem('TV Shows', 'now-playing')
+    new MenuItem('TV Shows', [
+      new MenuItem('On TV', '/tv/now-playing'),
+      new MenuItem('Popular', '/tv/popular'),
+      new MenuItem('Top Rated', '/tv/top-rated'),
+      new MenuItem('Airing Today', '/tv/airing-today')
+    ])
   ];
 
   isArray = Array.isArray;

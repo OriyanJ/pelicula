@@ -1,4 +1,5 @@
 import { GenreJson } from './genre.interface';
+import { SeasonJson } from './season.interface';
 
 export interface TvJson {
   backdrop_path?: string | null;
@@ -24,7 +25,7 @@ export interface TvJson {
   popularity?: number;
   poster_path?: string | null;
   production_companies?: Object[];
-  seasons?: Object[];
+  seasons?: SeasonJson[];
   status?: string;
   type?: string;
   vote_average?: number;

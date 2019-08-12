@@ -4,7 +4,10 @@
       <app-profile-image [path]="media.posterPath" size="xs"></app-profile-image>
     </div>
     <div class="col-10 col-lg-11">
-      <h4 class="mb-3 font-weight-bold">{{ media.title }} <span class="text-muted small">
+      <h4 class="mb-3 font-weight-bold">
+        <ng-container *ngSwitchCase="'movie'">{{ media.title }}</ng-container>
+        <ng-container *ngSwitchCase="'tv'">{{ media.name }}</ng-container>
+        <span class="text-muted small ml-2">
           <ng-container *ngSwitchCase="'movie'">({{ media.releaseDate | date:'y' }})</ng-container>
           <ng-container *ngSwitchCase="'tv'">({{ media.firstAirDate | date:'y' }})</ng-container>
         </span>

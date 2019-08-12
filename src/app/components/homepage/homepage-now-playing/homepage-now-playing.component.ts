@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Movie, Tv } from '@models';
+import { Component, OnInit } from '@angular/core';
+import { PaginatedData } from '@models';
+import { HomepageState } from '@state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-homepage-now-playing',
@@ -7,12 +9,23 @@ import { Movie, Tv } from '@models';
   styleUrls: ['./homepage-now-playing.component.scss']
 })
 export class HomepageNowPlayingComponent implements OnInit {
-  @Input() movies: Movie[] = [];
-  @Input() tvShows: Tv[] = [];
+  tvShows$: Observable<PaginatedData> = new Observable();
+  movies$: Observable<PaginatedData> = new Observable();
 
-  constructor() {}
+  constructor(private homepageState: HomepageState) {}
 
   ngOnInit() {
-    console.log(this.movies, this.tvShows);
+    this.initTvShows();
+    this.initMovies();
+  }
+
+  initTvShows() {
+    this.tvShows$ = this.homepageState.onTv$;
+    this.homepageState.loadTvShows();
+  }
+
+  initMovies() {
+    this.movies$ = this.homepageState.inTheaters$;
+    this.homepageState.loadMovies();
   }
 }

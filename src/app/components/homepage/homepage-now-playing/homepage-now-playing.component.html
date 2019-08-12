@@ -1,10 +1,9 @@
 <div class="container">
-
   <!-- In Theaters -->
-  <div id="homepage-in-theaters">
-    <div class="h4 font-weight-bold mb-4">In Theaters</div>
+  <div *ngIf="movies$ | async as movies">
+    <div class="h4 font-weight-bold my-4">In Theaters</div>
     <div class="row">
-      <div class="col-sm-6 col-lg-3 mb-4" *ngFor="let media of (movies | slice:0:4)">
+      <div class="col-sm-6 col-lg-3 mb-4" *ngFor="let media of (movies.data | slice:0:4)">
         <app-media-item [media]="media" [vertical]="true"></app-media-item>
       </div>
     </div>
@@ -12,15 +11,13 @@
   <!-- /In Theaters -->
 
   <!-- On TV -->
-  <div id="homepage-on-tv">
+  <div *ngIf="tvShows$ | async as tvShows">
     <div class="h4 font-weight-bold my-4">On TV</div>
     <div class="row">
-      <div class="col-sm-6 col-lg-3 mb-4" *ngFor="let media of (tvShows | slice:0:4)">
+      <div class="col-sm-6 col-lg-3 mb-4" *ngFor="let media of (tvShows.data | slice:0:4)">
         <app-media-item [media]="media" [vertical]="true"></app-media-item>
       </div>
     </div>
   </div>
-  <!-- /In Theaters -->
-
-
+  <!-- On TV -->
 </div>

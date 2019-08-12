@@ -13,6 +13,7 @@
       "@shared-directives": ["src/app/shared/directives"],
       "@shared-pipes": ["src/app/shared/pipes"],
       "@serializers": ["src/app/core/serializers"],
+      "@state": ["src/app/core/state"],
       "@interceptors": ["src/app/core/interceptors"],
       "@globals": ["src/app/globals"]
     },

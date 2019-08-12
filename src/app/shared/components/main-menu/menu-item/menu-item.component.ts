@@ -1,4 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  HostListener,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
+
 import { MenuItem } from '../main-menu.component';
 
 @Component({
@@ -8,9 +16,17 @@ import { MenuItem } from '../main-menu.component';
 })
 export class MenuItemComponent implements OnInit {
   @Input() menuItem: MenuItem;
+  @ViewChild('elementRef') elementRef: ElementRef;
+  showDropdown: boolean;
   isArray = Array.isArray;
-  show: boolean;
+
   constructor() {}
 
   ngOnInit() {}
+
+  @HostListener('document:click', ['$event.target']) onMouseEnter(target) {
+    if (this.elementRef.nativeElement !== target) {
+      this.showDropdown = false;
+    }
+  }
 }

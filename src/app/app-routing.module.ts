@@ -20,15 +20,13 @@ import {
   GetMediaVideosResolve,
   GetPeopleCreditsResolve,
   GetPeopleResolve,
-  GetTrendingResolve,
   GetTvSeasonsResolve
 } from '@shared-resolvers';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomepageComponent,
-    resolve: { trending: GetTrendingResolve }
+    component: HomepageComponent
   },
   {
     path: 'movie',
@@ -109,6 +107,12 @@ const routes: Routes = [
         path: 'top-rated',
         component: MediaListComponent,
         data: { list: 'top_rated', title: 'Top Rated TV Shows' },
+        resolve: { media: GetMediaListResolve }
+      },
+      {
+        path: 'airing-today',
+        component: MediaListComponent,
+        data: { list: 'airing_today', title: 'TV Shows Airing Today' },
         resolve: { media: GetMediaListResolve }
       }
     ]
