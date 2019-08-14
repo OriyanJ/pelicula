@@ -1,10 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { PaginatedData } from '@models';
 import { MediaService } from '@services';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Location } from '@angular/common';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { delay, map, tap } from 'rxjs/operators';
 
 interface ResolvedMedia {
   type: string;
@@ -21,8 +21,13 @@ interface ResolvedMedia {
 export class MediaListComponent implements OnInit {
   paginated$: Observable<PaginatedData> = new Observable();
   title$: Observable<string> = new Observable();
+  totalResults$: Subject<number> = new Subject();
+  currentPage = 1;
+
   private list: string;
   private type: string;
+
+  mediaData$: BehaviorSubject<PaginatedData> = new BehaviorSubject(null);
 
   constructor(
     private route: ActivatedRoute,
@@ -32,12 +37,15 @@ export class MediaListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.list = this.route.snapshot.data.list;
-    this.type = this.route.parent.snapshot.data.type;
-    this.title$ = this.route.data.pipe(
-      map((resolved: ResolvedMedia) => resolved.title)
-    );
-    this.getMedia(1, true);
+    this.route.data.pipe().subscribe((data: Data) => {
+      this.mediaData$.next(data.media);
+    });
+    // this.list = this.route.snapshot.data.list;
+    // this.type = this.route.parent.snapshot.data.type;
+    // this.title$ = this.route.data.pipe(
+    //   map((resolved: ResolvedMedia) => resolved.title)
+    // );
+    // this.getMedia(1, true);
   }
 
   /**
@@ -51,8 +59,14 @@ export class MediaListComponent implements OnInit {
       : this.mediaService.getMediaList(this.type, this.list, page);
 
     this.paginated$ = observer.pipe(
-      map((result: any) =>
-        fromResolved ? (<ResolvedMedia>result).media : result
+      delay(2000),
+      tap((result: Data | PaginatedData) => {
+        const paginatedData = fromResolved ? (<Data>result).media : result;
+        this.totalResults$.next(paginatedData.totalResults);
+        this.currentPage = paginatedData.page;
+      }),
+      map((result: Data | PaginatedData) =>
+        fromResolved ? (<Data>result).media : result
       )
     );
   }

@@ -138,7 +138,7 @@ const routes: Routes = [
     data: { type: 'tv' },
     resolve: {
       media: GetMediaDetailsResolve,
-      credits: GetTvSeasonsResolve
+      credits: GetMediaCreditsResolve
     }
   },
   {

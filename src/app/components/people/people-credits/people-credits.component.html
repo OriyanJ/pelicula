@@ -3,7 +3,7 @@
     <div class="h5 float-left">Credits</div>
 
     <!-- Credit type radio buttons -->
-    <div class="float-right">
+    <div class="float-right" *ngIf="showFilters">
       <div class="custom-control custom-radio custom-control-inline">
         <input class="custom-control-input" id="credit-type-movie" type="radio" name="credit-type" value="movie"
           [(ngModel)]="creditsFilter" (change)="onCreditsFilterChange()">

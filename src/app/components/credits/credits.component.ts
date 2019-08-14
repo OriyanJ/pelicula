@@ -24,6 +24,8 @@ export class CreditsComponent implements OnInit {
     this.departments = this.credits
       ? this.groupCrew(this.credits.crew as MediaCrew[])
       : {};
+
+    console.log(this.route.snapshot.data);
   }
 
   /**
