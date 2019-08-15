@@ -37,7 +37,7 @@
         </div>
 
         <!-- Directed/Created by -->
-        <div *ngIf="crew.length || media.createdBy.length">
+        <div *ngIf="crew.length || media.createdBy?.length">
           <div class="font-weight-semi-bold h5 text-white mb-3">
             <ng-container *ngSwitchCase="'movie'">Directed by</ng-container>
             <ng-container *ngSwitchCase="'tv'">Created by</ng-container>

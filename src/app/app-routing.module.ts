@@ -7,7 +7,8 @@ import {
   MediaDetailsComponent,
   MediaListComponent,
   PeopleComponent,
-  ReviewsComponent
+  ReviewsComponent,
+  LoginComponent
 } from '@components';
 import {
   GetExternalIdsResolve,
@@ -156,6 +157,10 @@ const routes: Routes = [
     path: 'search-results',
     loadChildren:
       './components/search-results/search-results.module#SearchResultsModule'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

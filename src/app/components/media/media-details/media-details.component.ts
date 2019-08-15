@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-media-details',
@@ -13,6 +14,6 @@ export class MediaDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.resolved$ = this.route.data;
+    this.resolved$ = this.route.data.pipe(tap(console.log));
   }
 }

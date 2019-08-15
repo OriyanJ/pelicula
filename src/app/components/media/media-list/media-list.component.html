@@ -1,18 +1,13 @@
 <div class="container">
-  Looking for data...
-  <div *ngIf="mediaData$ | async as data">
-    {{ data.page }}
-  </div>
-</div>
+  <h4 class="my-4 " *ngIf="title">{{ title }}</h4>
 
-<div class="container">
-  <h4 class="my-4 " *ngIf="(title$ | async) as title">{{ title }}</h4>
-
-  <ng-container *ngIf="(paginated$ | async) as paginated">
+  <ng-container *ngIf="paginated$ | async as paginated">
 
     <div>
       <div class="h6 text-muted">Showing {{ paginated.totalResults | number }} results</div>
     </div>
+
+    <!-- Top pagination -->
     <app-pagination [currentPage]="paginated.page" [totalResults]="paginated.totalResults" [itemsPerPage]="20"
       (pageChanged)="onPageChanged($event)" [maxPages]="5">
     </app-pagination>
@@ -25,9 +20,11 @@
 
     </div>
 
+    <!-- Bototm pagination -->
     <app-pagination [currentPage]="paginated.page" [totalResults]="paginated.totalResults" [itemsPerPage]="20"
       (pageChanged)="onPageChanged($event)" [maxPages]="5">
     </app-pagination>
+
   </ng-container>
 
 </div>

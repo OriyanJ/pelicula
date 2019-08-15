@@ -3,8 +3,8 @@
     (click)="showDropdown = !showDropdown" #elementRef>{{ menuItem.label }}</a>
   <div class="dropdown-menu dropdown-menu-card" [class.show]="showDropdown" *ngIf="isArray(menuItem.data)">
     <div class="bg-white rounded-soft py-2">
-      <a class="dropdown-item" [routerLink]="dropdown.data"
-        *ngFor="let dropdown of menuItem.data">{{ dropdown.label }}</a>
+      <a class="dropdown-item" [routerLink]="dropdown.data" *ngFor="let dropdown of menuItem.data"
+        routerLinkActive="active">{{ dropdown.label }}</a>
     </div>
   </div>
 </li>

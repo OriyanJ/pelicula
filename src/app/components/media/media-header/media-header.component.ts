@@ -13,5 +13,7 @@ export class MediaHeaderComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.crew);
+  }
 }

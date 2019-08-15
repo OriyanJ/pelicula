@@ -10,6 +10,7 @@ export { PaginatedData } from './paginated-data.model';
 export { PeopleCast } from './people-cast.model';
 export { PeopleCrew } from './people-crew.model';
 export { People } from './people.model';
+export { RequestToken } from './request-token.model';
 export { Review } from './review.model';
 export { Season } from './season.model';
 export { Tv } from './tv.model';

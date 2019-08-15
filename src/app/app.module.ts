@@ -1,6 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreditsComponent } from '@components';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +31,7 @@ import { ApiInterceptor } from './core/interceptors';
 import { HomepageNowPlayingComponent } from './components/homepage/homepage-now-playing/homepage-now-playing.component';
 import { NowPlayingItemComponent } from './components/homepage/homepage-now-playing/now-playing-item/now-playing-item.component';
 import { MediaSeasonsComponent } from './components/media/media-seasons/media-seasons.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -56,13 +57,15 @@ import { MediaSeasonsComponent } from './components/media/media-seasons/media-se
     HomepageComponent,
     DashboardComponent,
     HomepageNowPlayingComponent,
-    NowPlayingItemComponent
+    NowPlayingItemComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule
   ],

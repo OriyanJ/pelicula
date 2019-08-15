@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row flex-center py-6">
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5">
+      <div class="card">
+
+        <div class="card-body p-4 p-md-5">
+          <!-- Heading -->
+          <div class="mb-4">
+            <h5>Login to your account</h5>
+          </div>
+
+          <!-- Form -->
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="email" class="control-label">Username</label>
+              <input type="text" name="username" id="username" class="form-control required" formControlName="username"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="control-label">Password</label>
+              <input type="password" name="password" id="password" class="form-control" formControlName="password"
+                required>
+            </div>
+            <div class="form-group mb-4">
+              <a class="fs--1" href="https://www.themoviedb.org/account/reset-password" target="blank">Reset
+                password</a>
+            </div>
+            <div class="form-group mb-0">
+              <button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Log in</button>
+              <button class="btn btn-falcon-default btn-block mt-3" type="button" name="submit">Create a new
+                account</button>
+            </div>
+          </form>
+          <!-- /Form -->
+        </div>
+      </div>
+
+      <div class="text-center fs--1 mt-4">
+        <span class="text-sans-serif font-weight-semi-bold">película</span> is using The Movie Database (TMDb)
+        as its source of data. In order to be able to edit, rate and use TMDb's capabilities, you'll have to log in to
+        you account or create a new one if you don't have one.
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -12,6 +12,7 @@ export { PeopleCastJson } from './people-cast.interface';
 export { PeopleCrewJson } from './people-crew.interface';
 export { PeopleJson } from './people.interface';
 export { ProductionCompanyJson } from './production-company.interface';
+export { RequestTokenJson } from './request-token.interface';
 export { ReviewJson } from './review.interface';
 export { SeasonJson } from './season.interface';
 export { TvJson } from './tv.interface';

@@ -1,33 +1,22 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { PaginatedData } from '@models';
 import { MediaService } from '@services';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
-
-interface ResolvedMedia {
-  type: string;
-  list: string;
-  media: PaginatedData;
-  title: string;
-}
+import { untilDestroyed } from 'ngx-take-until-destroy';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-media-list',
   templateUrl: './media-list.component.html',
   styleUrls: ['./media-list.component.scss']
 })
-export class MediaListComponent implements OnInit {
-  paginated$: Observable<PaginatedData> = new Observable();
-  title$: Observable<string> = new Observable();
-  totalResults$: Subject<number> = new Subject();
-  currentPage = 1;
+export class MediaListComponent implements OnInit, OnDestroy {
+  paginated$: BehaviorSubject<PaginatedData> = new BehaviorSubject(null);
+  title: string;
 
   private list: string;
-  private type: string;
-
-  mediaData$: BehaviorSubject<PaginatedData> = new BehaviorSubject(null);
+  private mediaType: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,38 +26,26 @@ export class MediaListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.pipe().subscribe((data: Data) => {
-      this.mediaData$.next(data.media);
+    this.route.data.pipe(untilDestroyed(this)).subscribe((data: Data) => {
+      this.paginated$.next(data.media);
+      this.list = data.list;
+      this.title = data.title;
     });
-    // this.list = this.route.snapshot.data.list;
-    // this.type = this.route.parent.snapshot.data.type;
-    // this.title$ = this.route.data.pipe(
-    //   map((resolved: ResolvedMedia) => resolved.title)
-    // );
-    // this.getMedia(1, true);
+    this.mediaType = this.route.parent.snapshot.data.type;
   }
+
+  ngOnDestroy() {}
 
   /**
    * Get media list.
    * @param page Requested page
-   * @param fromResolved Whether to subscribe to resolved data or MediaService
    */
-  getMedia(page: number, fromResolved?: boolean) {
-    const observer = fromResolved
-      ? this.route.data
-      : this.mediaService.getMediaList(this.type, this.list, page);
-
-    this.paginated$ = observer.pipe(
-      delay(2000),
-      tap((result: Data | PaginatedData) => {
-        const paginatedData = fromResolved ? (<Data>result).media : result;
-        this.totalResults$.next(paginatedData.totalResults);
-        this.currentPage = paginatedData.page;
-      }),
-      map((result: Data | PaginatedData) =>
-        fromResolved ? (<Data>result).media : result
-      )
-    );
+  getMedia(page?: number) {
+    this.mediaService
+      .getMediaList(this.mediaType, this.list, page)
+      .subscribe((paginated: PaginatedData) => {
+        this.paginated$.next(paginated);
+      });
   }
 
   onPageChanged(page: number) {

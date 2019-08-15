@@ -11,7 +11,21 @@ export class MediaItemComponent implements OnInit {
   @Input() minimal?: boolean;
   @Input() vertical?: boolean;
 
+  isUpcoming: boolean;
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isUpcomingMovie();
+  }
+
+  isUpcomingMovie() {
+    if (this.media.mediaType !== 'movie') {
+      return;
+    }
+    const media = <Movie>this.media;
+    const now = new Date();
+    const releaseDate = new Date(media.releaseDate);
+    this.isUpcoming = releaseDate > now;
+  }
 }

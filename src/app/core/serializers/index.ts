@@ -1,3 +1,6 @@
+export {
+  CreateSessionWithTokenSerializer
+} from './create-session-with-login.serializer';
 export { GetExternalIdsSerializer } from './get-external-ids.serializer';
 export { GetMediaListSerializer } from './get-media-list.serializer';
 export { GetMediaCreditsSerializer } from './get-media-credits.serializer';

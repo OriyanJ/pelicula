@@ -46,8 +46,10 @@
 <ng-template #dateRating>
   <div class="text-muted mb-2" *ngIf="!minimal" [ngSwitch]="media.mediaType">
     <!-- Date -->
-    <span class="font-weight-semi-bold text-sans-serif mr-2" *ngIf="media.releaseDate || media.firstAirDate">
-      <ng-container *ngSwitchCase="'movie'">{{ media.releaseDate | date:'y' }}</ng-container>
+    <span class="h6 mr-2" *ngIf="media.releaseDate || media.firstAirDate">
+      <ng-container *ngSwitchCase="'movie'">
+        {{ isUpcoming ? (media.releaseDate | date) : (media.releaseDate | date:'y') }}
+      </ng-container>
       <ng-container *ngSwitchCase="'tv'">{{ media.firstAirDate | date:'y' }}</ng-container>
     </span>
 
@@ -59,7 +61,7 @@
   </div>
   <ng-template #noRating>
     <span class="badge badge-soft-secondary rounded-capsule">
-      No rating
+      <span class="fa fa-heart"></span>
     </span>
   </ng-template>
 </ng-template>

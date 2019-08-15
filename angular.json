@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@ng-select/ng-select/scss/default.theme.scss"
+              "node_modules/@ng-select/ng-select/scss/default.theme.scss",
+              "node_modules/pnotify/dist/PNotifyBrightTheme.css"
             ]
           },
           "configurations": {
