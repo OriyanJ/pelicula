@@ -1,3 +1,4 @@
+export { AccountJson } from './account.interface';
 export { AllowedVideoTypes } from './video.interface';
 export { CreditsJson } from './credits.interface';
 export { ExternalIdsJson } from './external-ids.interface';
@@ -15,6 +16,7 @@ export { ProductionCompanyJson } from './production-company.interface';
 export { RequestTokenJson } from './request-token.interface';
 export { ReviewJson } from './review.interface';
 export { SeasonJson } from './season.interface';
+export { SessionJson } from './session.interface';
 export { TvJson } from './tv.interface';
 export { VideoJson } from './video.interface';
 export { VideosJson } from './videos.interface';

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, Router } from '@angular/router';
+import { AccountState } from '@state';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 export class MenuItem {
   label: string;
@@ -34,10 +37,13 @@ export class MainMenuComponent implements OnInit {
   isArray = Array.isArray;
   showProgress: boolean;
 
-  constructor(private router: Router) {}
+  account$ = new Observable();
+
+  constructor(private router: Router, private accountState: AccountState) {}
 
   ngOnInit() {
     this.handleRouting();
+    this.account$ = this.accountState.sessionId;
   }
 
   handleRouting() {

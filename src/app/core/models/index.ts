@@ -1,3 +1,4 @@
+export { Account } from './account.model';
 export { Credit } from './credit.model';
 export { Credits } from './credits.model';
 export { ExternalIds } from './external-ids.model';
@@ -13,6 +14,7 @@ export { People } from './people.model';
 export { RequestToken } from './request-token.model';
 export { Review } from './review.model';
 export { Season } from './season.model';
+export { Session } from './session.model';
 export { Tv } from './tv.model';
 export { Video } from './video.model';
 export { Videos } from './videos.model';

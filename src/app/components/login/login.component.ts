@@ -1,8 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { NotifyService, AuthenticationService } from '@services';
-import { tap, switchMap } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
 import { RequestToken } from '@models';
+import { AuthenticationService, NotifyService } from '@services';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -35,24 +36,43 @@ export class LoginComponent implements OnInit {
   }
 
   attemptLogin() {
-    console.log(this.loginForm);
-
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
+    const loginPayload = {
+      username: username,
+      password: password
+    };
+    return;
 
     this.authService
+      // Start by creating a token
       .createRequestToken()
       .pipe(
-        switchMap((requestToken: RequestToken) => {
-          return this.authService.createSessionWithLogin(
+        // Validate the token with the credentials, before generating a session ID
+        switchMap((requestToken: RequestToken) =>
+          this.authService.createSessionWithLogin(
             requestToken.token,
             username,
             password
-          );
-        })
+          )
+        ),
+        switchMap((requestToken: RequestToken) =>
+          this.authService.createSession(requestToken.token)
+        )
       )
-      .subscribe(data => {
-        console.log(data);
+      .subscribe({
+        next: data => {
+          console.log(data);
+        },
+        error: (error: Error | HttpErrorResponse) => this.handleErrors(error)
       });
+  }
+
+  handleErrors(error: Error | HttpErrorResponse) {
+    const errorMessage =
+      error instanceof HttpErrorResponse
+        ? error.error['status_message']
+        : 'Failed to log in';
+    this.notifyService.error(errorMessage);
   }
 }
